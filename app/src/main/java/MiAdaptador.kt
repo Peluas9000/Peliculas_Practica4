@@ -21,7 +21,7 @@ class MiAdaptador(private val context: Context, private val dataSource: List<Pel
     }
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
-        val filaView = convertView ?: inflater.inflate(R.layout.mi_fila_personalizada, parent, false)
+        val filaView = convertView ?: inflater.inflate(R.layout.activity_main, parent, false)
         val textView: TextView = filaView.findViewById(R.id.textoFila)
         val imageView: ImageView = filaView.findViewById(R.id.imagenFila)
         val pais = getItem(position)
