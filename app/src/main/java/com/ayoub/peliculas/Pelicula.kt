@@ -1,6 +1,11 @@
 package com.ayoub.peliculas
 
-data class Pelicula (val titulo:String,val director:String,val anio:Int,val sinopsis:String,val caratula:Int){
+import java.io.Serializable
 
-    val seleccionada: Boolean=false
-}
+data class Pelicula (val titulo:String,
+                     val director:String,
+                     val anio:Int,
+                     val sinopsis:String,
+                     val caratula:Int,//R.drawable.imagen
+                     val seleccionado: Boolean=false
+                    ): Serializable
