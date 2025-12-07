@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         lista.add(Pelicula("JUJUTSU KAISEN", "Ayoub", 2025,"Anime de accion",R.drawable.jujutsu))
         lista.add(Pelicula("SUPERMAN", "Henry Calvin", 2023,"Pelicula DC",R.drawable.superman))
         lista.add(Pelicula("Spider Man no Way Home", "Zendaya", 2021,"Pelicula Marvel",R.drawable.spiderman))
+        lista.add(Pelicula("Demon Slayer Castillo Infinito", "Ufotable", 2025,"Pelicula Anime Ufotable",R.drawable.demon))
+        lista.add(Pelicula("Weapons", "Zach Cregger", 2025,"Cuando todos los alumnos de una misma clase, salvo uno, desaparecen misteriosamente",R.drawable.weapons))
 
         // 2. Encontrar la lista en la pantalla (El marco)
         // ESTO DEBE COINCIDIR CON activity_main.xml

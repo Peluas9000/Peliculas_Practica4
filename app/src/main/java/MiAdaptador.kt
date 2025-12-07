@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import org.w3c.dom.Text
 
 class MiAdaptador(private val context: Context, private val dataSource: List<Pelicula>) : BaseAdapter() {
 
@@ -31,6 +32,7 @@ class MiAdaptador(private val context: Context, private val dataSource: List<Pel
 
         // 2. Buscamos los componentes dentro de ESE layout
         val tvTitulo = view.findViewById<TextView>(R.id.tvTitulo)
+        val tvSubtitulo=view.findViewById<TextView>(R.id.subtitulo)
         val ivCaratula = view.findViewById<ImageView>(R.id.ivCaratula)
 
         // 3. Obtenemos los datos de la película actual

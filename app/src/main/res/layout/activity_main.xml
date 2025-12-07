@@ -9,13 +9,13 @@
 
     <ListView
         android:id="@+id/lvPeliculas"
-        android:layout_width="331dp"
-        android:layout_height="584dp"
+        android:layout_width="374dp"
+        android:layout_height="708dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="InvalidId,MissingConstraints" >
+        tools:ignore="InvalidId,MissingConstraints">
 
-     </ListView>
+    </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>
