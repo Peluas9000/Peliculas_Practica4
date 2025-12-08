@@ -1,5 +1,6 @@
 package com.ayoub.peliculas
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -24,8 +25,7 @@ class DetalleActivity : AppCompatActivity() {
         // 1. Recuperar el objeto que nos enviaron
         // "EXTRA_PELICULA" es la clave secreta que usaremos en el Main para pasarlo
         val pelicula = intent.getSerializableExtra("EXTRA_PELICULA") as? Pelicula
-        val seleccionado=findViewById<CheckBox>(R.id.seleccionar)
-
+        val select=findViewById<CheckBox>(R.id.seleccionar)
         // 2. Si la película llegó bien, rellenamos la pantalla
         if (pelicula != null) {
             val ivFoto = findViewById<ImageView>(R.id.portada)
@@ -40,11 +40,20 @@ class DetalleActivity : AppCompatActivity() {
         }
 
 
-
-        // 3. Botón para cerrar
+        val eleccion=select.isChecked
+        // 3. Botó n para cerrar
         findViewById<Button>(R.id.botonVolver).setOnClickListener {
+            val intento= Intent(this, MainActivity::class.java)
+            var favoritos=""
+            if(eleccion){
+                favoritos="true"
+            }else{
+                favoritos="false"
+            }
 
-            finish() // Cierra esta pantalla y vuelve a la lista
+            intento.putExtra("eleccion",favoritos)
+            //esta la opcion finish() para volver
+                startActivity(intento)
         }
 
 

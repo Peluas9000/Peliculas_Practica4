@@ -1,6 +1,7 @@
 package com.ayoub.peliculas
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
@@ -37,7 +38,9 @@ class MainActivity : AppCompatActivity() {
 
         // 4. CONEXIÓN FINAL: Unir la lista con el adaptador
         listView.adapter = adaptador
+        //Recibimos el valor de la seleccion de peliculas en favoritas
 
+        val seleccion=intent.getStringExtra("eleccion")
 
 
 
@@ -55,6 +58,13 @@ class MainActivity : AppCompatActivity() {
 
             // 4. Arrancar el viaje
             startActivity(intent)
+            if(seleccion.equals("true")){
+                listView.setBackgroundColor(Color.GREEN)
+            }
         }
+
+
+
+
     }
 }
