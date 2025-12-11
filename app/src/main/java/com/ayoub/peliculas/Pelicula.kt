@@ -7,5 +7,5 @@ data class Pelicula (val titulo:String,
                      val anio:Int,
                      val sinopsis:String,
                      val caratula:Int,//R.drawable.imagen
-                     val seleccionado: Boolean=false
+                     var seleccionado: Boolean=false
                     ): Serializable

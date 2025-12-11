@@ -22,11 +22,12 @@ class DetalleActivity : AppCompatActivity() {
             insets
         }
 
-        // 1. Recuperar el objeto que nos enviaron
-        // "EXTRA_PELICULA" es la clave secreta que usaremos en el Main para pasarlo
+        // Recuperar datos
         val pelicula = intent.getSerializableExtra("EXTRA_PELICULA") as? Pelicula
-        val select=findViewById<CheckBox>(R.id.seleccionar)
-        // 2. Si la película llegó bien, rellenamos la pantalla
+        val posicionRecibida = intent.getIntExtra("POSICION", -1)
+
+        val checkBox = findViewById<CheckBox>(R.id.seleccionar)
+
         if (pelicula != null) {
             val ivFoto = findViewById<ImageView>(R.id.portada)
             val tvTitulo = findViewById<TextView>(R.id.titulo)
@@ -37,25 +38,24 @@ class DetalleActivity : AppCompatActivity() {
             tvTitulo.text = pelicula.titulo
             tvSubtitulo.text = "${pelicula.director} - ${pelicula.anio}"
             tvSinopsis.text = pelicula.sinopsis
+
+            // IMPORTANTE: Marcar el checkbox si la película ya venía seleccionada
+            checkBox.isChecked = pelicula.seleccionado
         }
 
-
-        val eleccion=select.isChecked
-        // 3. Botó n para cerrar
+        // Botón Volver
         findViewById<Button>(R.id.botonVolver).setOnClickListener {
-            val intento= Intent(this, MainActivity::class.java)
-            var favoritos=""
-            if(eleccion){
-                favoritos="true"
-            }else{
-                favoritos="false"
-            }
+            val intentResultado = Intent()
 
-            intento.putExtra("eleccion",favoritos)
-            //esta la opcion finish() para volver
-                startActivity(intento)
+            // Devolvemos el estado ACTUAL del checkbox (true o false)
+            intentResultado.putExtra("ESTADO_CHECKBOX", checkBox.isChecked)
+            intentResultado.putExtra("POSICION", posicionRecibida)
+
+            // Confirmamos que todo fue bien
+            setResult(RESULT_OK, intentResultado)
+
+            // Cerramos la actividad actual para volver al Main
+            finish()
         }
-
-
     }
 }
