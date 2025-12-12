@@ -1,6 +1,7 @@
 package com.ayoub.peliculas
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.Menu
@@ -91,6 +92,12 @@ class MainActivity : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.lvPeliculas)
         adaptador = MiAdaptador(this, lista)
         listView.adapter = adaptador
+        //Recibimos el valor de la seleccion de peliculas en favoritas
+
+
+        val seleccion=intent.getStringExtra("eleccion")
+
+
 
 
         registerForContextMenu(listView)
@@ -104,9 +111,18 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("EXTRA_PELICULA", peliculaSeleccionada)
             intent.putExtra("POSICION", position)
 
+            // 4. Arrancar el viaje
+            startActivity(intent)
+            if(seleccion.equals("true")){
+                listView.setBackgroundColor(Color.GREEN)
+            }
             // IMPORTANTE: Usamos el launcher, NO startActivity
             launcherDetalle.launch(intent)
         }
+
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
