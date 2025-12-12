@@ -51,7 +51,7 @@ class DetalleActivity : AppCompatActivity() {
             intentResultado.putExtra("ESTADO_CHECKBOX", checkBox.isChecked)
             intentResultado.putExtra("POSICION", posicionRecibida)
 
-            // Confirmamos que todo fue bien
+            // Confirmamos quetodo fue bien
             setResult(RESULT_OK, intentResultado)
 
             // Cerramos la actividad actual para volver al Main

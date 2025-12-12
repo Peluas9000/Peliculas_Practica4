@@ -41,6 +41,17 @@
             android:text="Sinopsis"
             />
 
+        <ImageButton
+            android:id="@+id/btnTresPuntos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_more_vert_24"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+
+            android:layout_gravity="end"
+            android:layout_marginEnd="4dp"/>
+
 
     </LinearLayout>
 </LinearLayout>

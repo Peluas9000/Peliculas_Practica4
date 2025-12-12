@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 
 class MiAdaptador(private val context: Context, private val dataSource: List<Pelicula>) : BaseAdapter() {
 
@@ -50,6 +52,30 @@ class MiAdaptador(private val context: Context, private val dataSource: List<Pel
         } else {
             view.setBackgroundColor(Color.TRANSPARENT) // O Color.WHITE, el color por defecto
         }
+
+        // Añadimos la logica del botón de los 3 puntos
+        val btnMenu = view.findViewById<ImageButton>(R.id.btnTresPuntos)
+        btnMenu.setOnClickListener { view ->
+            val popup = android.widget.PopupMenu(context, view)
+            popup.menuInflater.inflate(R.menu.menupopup, popup.menu)
+            popup.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.popup_favorito -> {
+                        Toast.makeText(context, "Favorito: ${peliculaActual.titulo}", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    R.id.popup_ocultar -> {
+                        Toast.makeText(context, "Producto eliminado", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
+        //para evitar que el botón se quede bloqueado
+        btnMenu.isFocusable = false
+
 
         return view
     }

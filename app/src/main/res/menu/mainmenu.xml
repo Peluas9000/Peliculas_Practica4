@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_item_config"
+        android:title="Configuración"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_compartir"
+        android:title="Compartir"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_item_ordenar"
+        android:title="Ordenar por:"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/submenu_precio"
+                android:title="Nota (Menor a mayor)" />
+
+            <item
+                android:id="@+id/submenu_nombre"
+                android:title="Titulo (A-Z)" />
+        </menu>
+    </item>
+
+</menu>
