@@ -13,6 +13,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -51,6 +52,25 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //Aceptar los buneos dias +
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("¡Bienvenido!")
+        builder.setMessage("Mensaje de bienvenida.")
+        builder.setPositiveButton("OK", null)
+        builder.show()
+
+        //Aceptar las condicones
+        val builderLegal = AlertDialog.Builder(this)
+        builder.setTitle("Aviso Legal")
+        builder.setMessage("Para usar esta aplicación debes aceptar los términos de uso.")
+        builder.setPositiveButton("Aceptar", null)
+        builder.setNegativeButton("Salir") { dialog, which ->
+            finish() // Si no Acepta, cierra la Activity y no le deja hacer nada
+        }
+        builder.setCancelable(false) // Para evitar que el usuario lo cierre tocando fuera y le obligue a pulsar algo
+        builder.show()
+
 
         // 1. Crear los datos
         lista = ArrayList()
