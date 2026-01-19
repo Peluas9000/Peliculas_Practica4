@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.preference.PreferenceCategory app:title="General">
+        <SwitchPreferenceCompat
+            app:key="notificaciones"
+            app:title="Recibir ofertas"
+            app:summary="Recibir avisos de nuevos productos"
+            app:defaultValue="true" />
+        <EditTextPreference
+            app:key="nombre_usuario"
+            app:title="Nombre de usuario"
+            app:summary="Cómo quieres que te llame la app"
+            app:dialogTitle="Escribe tu nombre"
+            app:defaultValue="Cliente VIP" />
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>

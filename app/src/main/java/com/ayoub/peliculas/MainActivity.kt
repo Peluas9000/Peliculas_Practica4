@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -17,6 +18,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.ayoub.peliculas.com.ayoub.peliculas.ConfigActivity
+import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +46,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+// Leemos las preferencias
+        val prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
+// Obtenemos el nombre (clave "nombre_usuario" definida en el root_preferences.xml)
+        val nombreUsuario = prefs.getString("nombre_usuario", "Cliente")
+// Usamos el nombre y cambiamos el título de la ActionBar para saludar
+        supportActionBar?.title = "Hola, $nombreUsuario"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,24 +65,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        mostrarDialogoBienvenida()
 
-        //Aceptar los buneos dias +
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("¡Bienvenido!")
-        builder.setMessage("Mensaje de bienvenida.")
-        builder.setPositiveButton("OK", null)
-        builder.show()
 
-        //Aceptar las condicones
-        val builderLegal = AlertDialog.Builder(this)
-        builder.setTitle("Aviso Legal")
-        builder.setMessage("Para usar esta aplicación debes aceptar los términos de uso.")
-        builder.setPositiveButton("Aceptar", null)
-        builder.setNegativeButton("Salir") { dialog, which ->
-            finish() // Si no Acepta, cierra la Activity y no le deja hacer nada
-        }
-        builder.setCancelable(false) // Para evitar que el usuario lo cierre tocando fuera y le obligue a pulsar algo
-        builder.show()
+
+
 
 
         // 1. Crear los datos
@@ -154,6 +154,9 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_item_config -> {
                 Toast.makeText(this, "Abriendo Configuración...", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ConfigActivity::class.java)
+                startActivity(intent)
+
                 true
             }
             R.id.menu_item_compartir -> {
@@ -208,6 +211,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun mostrarDialogoAvisoLegal() {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("Aviso Legal")
+        builder.setMessage("Para usar esta tienda debes aceptar los términos y condiciones de uso.")
+        builder.setPositiveButton("Aceptar", null)
+        builder.setNegativeButton("Salir") { _, _ ->
+            finish() // Cierra la Activity actual (la app)
+        }
+        builder.setCancelable(false) // Impedimos que se cierre tocando fuera del mensaje
+        builder.show()
+    }
+
+
+    private fun mostrarDialogoBienvenida() {
+        val builder = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.dialogo_gif, null)
+        val imagenGif = dialogView.findViewById<ImageView>(R.id.imagenBienvenida)
+
+        // Cargar el GIF con Glide (referencia simplificada)
+        Glide.with(this)
+            .load(R.drawable.bienvenida)
+            .into(imagenGif)
+
+        builder.setView(dialogView)
+
+        // Al pulsar Continuar, se ejecuta la siguiente función
+        builder.setPositiveButton("Continuar") { dialog, _ ->
+            dialog.dismiss() // Cierra el diálogo actual
+            mostrarDialogoAvisoLegal() // Llama al siguiente
+        }
+
+        // Opcional: Impedir que cierren el diálogo tocando fuera para obligar a dar a "Continuar"
+        builder.setCancelable(false)
+
+        builder.show()
+    }
 
 
 }
