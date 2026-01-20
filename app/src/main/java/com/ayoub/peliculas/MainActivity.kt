@@ -18,7 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.ayoub.peliculas.com.ayoub.peliculas.ConfigActivity
+
 import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.ayoub.peliculas.com.ayoub.peliculas // Revisa que este package sea el correcto en tu proyecto
+package com.ayoub.peliculas
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
